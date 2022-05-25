@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Corsch')
+@section('title', 'Dovma')
 
 @section('content_header')
-   <h1> @yield('title_page')</h1>
+   <h2> @yield('title_page')</h2>
 @stop
 
 @section('content')
@@ -11,9 +11,11 @@
 @stop
 
 @section('css')
+@livewireStyles
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
     
 @section('js')
+@livewireScripts
     <script> console.log('Hi!'); </script>
 @stop
