@@ -242,7 +242,12 @@ return [
                 [
                     'text' => 'Gestión de Usuario',
                     'icon' => 'fas fa-user-alt',
-                    'route'  => 'usuario_index'
+                    'route'  => 'cliente_index'
+                ],
+                [
+                    'text' => 'Gestión de Productos',
+                    'icon' => 'fas fa-store',
+                    'route'  => 'producto_index'
                 ],
                 [
                     'text'    => 'level_one',

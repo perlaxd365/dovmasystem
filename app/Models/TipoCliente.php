@@ -11,6 +11,7 @@ class TipoCliente extends Model
     
     protected $fillable = [
         //key
+        'id_tipo_cliente',
         'id_empresa',
         
         //datos de tabla

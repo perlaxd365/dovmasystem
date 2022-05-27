@@ -16,8 +16,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'proveedor' => env('APP_PROVEEDOR','CORSCH_SYSTEMS'),
-    'empresa' => env('APP_EMPRESA',1),
+    'proveedor' => env('APP_PROVEEDOR','prov_1'),
+    'empresa' => env('APP_EMPRESA','emp_1'),
 
     /*
     |--------------------------------------------------------------------------

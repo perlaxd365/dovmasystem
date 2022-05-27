@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +35,10 @@ Route::middleware([
 
 
 //Usuario
-Route::controller(UsuarioController::class)->group(function () {
-    Route::get("usuario/index", "index")->name('usuario_index');
+Route::controller(ClienteController::class)->group(function () {
+    Route::get("cliente/index", "index")->name('cliente_index');
+});
+//Usuario
+Route::controller(ProductoController::class)->group(function () {
+    Route::get("producto/index", "index")->name('producto_index');
 });

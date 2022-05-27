@@ -1,8 +1,8 @@
 <div>
 
-    @include('livewire.usuario.' . $view)
+    @include('livewire.cliente.' . $view)
 
-    @include('livewire.usuario.table')
+    @include('livewire.cliente.table')
 
     <script type="text/javascript">
         window.addEventListener('respuesta', event => {

@@ -16,7 +16,26 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             //id 
             $table->id('id_producto')->comment('Clave primaria');
-            $table->timestamps();
+            $table->string('codigo_interno', 20)->comment('Codigo interno por cada producto');
+            $table->unsignedBigInteger('id_uni_med_stock')->comment('ID de la tabla unidad de medida del stock');
+            $table->unsignedBigInteger('id_uni_med_capacidad')->comment('ID de la tabla unidad de medida de la capacidad');
+            $table->integer('id_empresa')->comment('ID de la empresa');
+            //Datos de producto 
+            $table->string('descripcion_pro', 50)->comment('Descripción de producto');
+            $table->double('capacidad_pro')->comment('Capacidad de producto');
+            $table->string('vigencia_pro', 5)->comment('Vigencia del producto: SI o NO');
+            //datos de auditoria 
+            $table->string('usuario_creacion', '150')->nullable();
+            $table->string('fecha_creacion', '30')->nullable();
+            $table->string('usuario_modificacion', '150')->nullable();
+            $table->string('fecha_modificacion', '30')->nullable();
+            $table->string('usuario_eliminacion', '150')->nullable();
+            $table->string('fecha_eliminacion', '30')->nullable();
+            //Referencia de unidad de medida de stock a tabla unidad de medida
+            $table->foreign('id_uni_med_stock')->references('id_uni_med')->on('unidad_medidas');
+            //Referencia de unidad de medida de capacidad a tabla unidad de medida
+            $table->foreign('id_uni_med_capacidad')->references('id_uni_med')->on('unidad_medidas');
+       
         });
     }
 

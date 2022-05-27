@@ -17,11 +17,11 @@ return new class extends Migration
             // Key 
             $table->id('id_cliente');
             //foreign key
-            $table->unsignedBigInteger('tipo_id')->comment('ID del tipo de cliente');
+            $table->unsignedBigInteger('id_tipo_cliente')->comment('ID del tipo de cliente');
+            $table->unsignedBigInteger('id_tipo_persona')->comment('ID del tipo de persona');
             // empresa
             $table->integer('id_empresa');
             //datos de cliente
-            $table->string('tipo_persona_cli',30)->comment('Tipo de persona: natural o jurídica');
             $table->string('razon_social_cli',50)->nullable()->comment('Razon Social');
             $table->string('ape_pat_cli',30)->nullable()->comment('Apellido paterno de cliente');
             $table->string('ape_mat_cli',30)->nullable()->comment('Apellido materno de cliente');
@@ -41,7 +41,11 @@ return new class extends Migration
             $table->string('usuario_eliminacion','150')->nullable();
             $table->string('fecha_eliminacion','30')->nullable();
             $table->timestamps();
-            $table->foreign('tipo_id')->references('id_tipo')->on('tipo_clientes');
+            
+            //Referencia tabla tipo_cliente
+            $table->foreign('id_tipo_cliente')->references('id_tipo_cliente')->on('tipo_clientes');
+            //Referencia tabla tipo_persona
+            $table->foreign('id_tipo_persona')->references('id_tipo_persona')->on('tipo_personas');
         });
     }
 
