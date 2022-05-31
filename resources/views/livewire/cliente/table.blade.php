@@ -1,5 +1,22 @@
+
 <div class="card">
-    
+    <br>
+    <!-- Another variation with a button -->
+
+    <div class="input-group mx-auto" style="width: 100px;">
+        
+        <label for="inputEmail4">Búsqueda</label>
+    </div>
+        <div class="input-group mx-auto" style="width: 500px;">
+        <input wire:model="busqueda" type="text" class="form-control" placeholder="Buscar por cualquier criterio">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button"><i wire:target="busqueda" wire:loading.class="fa fa-spinner fa-spin"
+            aria-hidden="true"></i>
+            <i class="fa fa-search" wire:loading.attr="disabled" ></i>
+          </button>
+        </div>
+   </div>
+    <br>
     <div class="card-body row">
         <table class="table  table-striped table-responsive table-hover">
             <thead class="thead-dark">
@@ -20,6 +37,7 @@
                 </tr>
             </thead>
             <tbody>
+                @if (count($clientes) > 0)
                     @foreach ($clientes as $key=> $cliente)
                         <tr>
                             <td>{{ $key+1 }}</td>
@@ -39,6 +57,11 @@
                                 <i class='fas fa-trash-alt'></i>Eliminar</button></td>
                         </tr>
                     @endforeach
+                    @else
+                        <tr style="cursor:pointer;">
+                            <th colspan="100%" style="background-color: bisque" scope="row">Sin Resultados</th>
+                        </tr>
+                    @endif
             </tbody>
         </table>
     </div>

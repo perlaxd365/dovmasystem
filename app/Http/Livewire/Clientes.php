@@ -31,7 +31,8 @@ class Clientes extends Component
             $email_cli,
             $telefono_cli,
             $direccion_cli,
-            $contacto_cli;
+            $contacto_cli,
+            $busqueda;
     //id
     public $id_cliente;
     //Usuario logueado
@@ -60,7 +61,16 @@ class Clientes extends Component
         return ModelCliente::select('*')
             ->join('tipo_clientes', 'tipo_clientes.id_tipo_cliente', '=', 'clientes.id_tipo_cliente')
             ->join('tipo_personas', 'tipo_personas.id_tipo_persona', '=', 'clientes.id_tipo_persona')
-            ->where('vigencia_cli', '=', 'SI')
+            ->where(function($query){
+                return $query
+                ->orWhere('clientes.nombre_cli', 'LIKE', '%' . $this->busqueda . '%')
+                ->orWhere('clientes.ape_pat_cli', 'LIKE', '%' . $this->busqueda . '%')
+                ->orWhere('clientes.ape_mat_cli', 'LIKE', '%' . $this->busqueda . '%')
+                ->orWhere('tipo_clientes.nombre_tipo', 'LIKE', '%' . $this->busqueda . '%')
+                ->orWhere('tipo_personas.descripcion', 'LIKE', '%' . $this->busqueda . '%')
+                ->orWhere('clientes.razon_social_cli', 'LIKE', '%' . $this->busqueda . '%');
+            })
+            ->where('vigencia_cli', '=', true)
             ->orderby('id_cliente', 'desc')->paginate($this->show);
     }
 
@@ -96,7 +106,7 @@ class Clientes extends Component
             'telefono_cli' => $this->telefono_cli,
             'direccion_cli' => $this->direccion_cli,
             'contacto_cli' => $this->contacto_cli,
-            'vigencia_cli' => 'SI',
+            'vigencia_cli' => true,
             'usuario_creacion'=> Auth::user()->name,
             'fecha_creacion'=> now(),
         ]);
@@ -184,17 +194,24 @@ class Clientes extends Component
         $this->default();
         $this->dispatchBrowserEvent('respuesta', ['res' => 'actualizó']);
     }
+    
     public function delete($id)
     {
 
         $usuario = ModelCliente::find($id);
         $usuario->update([
-            'vigencia_cli'   => 'NO',
+            'vigencia_cli'   => false,
             'usuario_eliminacion'=> Auth::user()->name,
             'fecha_eliminacion'=> now(),
 
         ]);
         $this->default();
         $this->dispatchBrowserEvent('respuesta', ['res' => 'eliminó']);
+    }
+
+    public function updatedbuscarCliente(){
+      
+        $this->resetPage();
+
     }
 }

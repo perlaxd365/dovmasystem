@@ -35,7 +35,7 @@ class ClienteFactory extends Factory
             'telefono_cli'=>$this->faker->phoneNumber(),
             'direccion_cli'=>$this->faker->address(),
             'contacto_cli'=>$this->faker->phoneNumber(),
-            'vigencia_cli'=>$this->faker->randomElement(['SI','NO']),
+            'vigencia_cli'=>$this->faker->randomElement([true,false]),
             'usuario_creacion'=>config('app.proveedor','prov_1'),
             'fecha_creacion'=>now(),
 

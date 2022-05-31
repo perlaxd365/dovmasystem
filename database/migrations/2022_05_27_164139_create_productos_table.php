@@ -21,9 +21,9 @@ return new class extends Migration
             $table->unsignedBigInteger('id_uni_med_capacidad')->comment('ID de la tabla unidad de medida de la capacidad');
             $table->integer('id_empresa')->comment('ID de la empresa');
             //Datos de producto 
-            $table->string('descripcion_pro', 50)->comment('Descripción de producto');
-            $table->double('capacidad_pro')->comment('Capacidad de producto');
-            $table->string('vigencia_pro', 5)->comment('Vigencia del producto: SI o NO');
+            $table->text('descripcion_pro')->nullable()->comment('Descripción de producto');
+            $table->double('capacidad_pro')->nullable()->comment('Capacidad de producto');
+            $table->boolean('vigencia_pro', 5)->default(true)->comment('Vigencia del producto: SI o NO');
             //datos de auditoria 
             $table->string('usuario_creacion', '150')->nullable();
             $table->string('fecha_creacion', '30')->nullable();
@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('fecha_modificacion', '30')->nullable();
             $table->string('usuario_eliminacion', '150')->nullable();
             $table->string('fecha_eliminacion', '30')->nullable();
+            $table->timestamps();
             //Referencia de unidad de medida de stock a tabla unidad de medida
             $table->foreign('id_uni_med_stock')->references('id_uni_med')->on('unidad_medidas');
             //Referencia de unidad de medida de capacidad a tabla unidad de medida

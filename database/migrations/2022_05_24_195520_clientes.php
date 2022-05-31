@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('telefono_cli',20)->nullable()->comment('Telefono de cliente');
             $table->text('direccion_cli')->nullable()->comment('Direccion de cliente');
             $table->string('contacto_cli',30)->nullable()->comment('Contacto del cliente de respaldo');
-            $table->text('vigencia_cli',5)->nullable()->comment('vigencia de cliente: SI o NO');
+            $table->boolean('vigencia_cli',5)->default(true)->comment('vigencia de cliente: SI o NO');
             //datos de auditoria 
             $table->string('usuario_creacion','150')->nullable();
             $table->string('fecha_creacion','30')->nullable();
